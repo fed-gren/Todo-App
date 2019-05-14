@@ -1,0 +1,23 @@
+{
+  "name": "todo_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run init-db && ./node_modules/nodemon/bin/nodemon.js server.js",
+    "sequelize-skeleton": "./node_modules/sequelize-cli/lib/sequelize init:models; ./node_modules/sequelize-cli/lib/sequelize init:config",
+    "init-db": "cd /usr/local/bin && echo 'CREATE DATABASE IF NOT EXISTS todo_list CHARACTER SET utf8 COLLATE utf8_general_ci' | mysql -uroot && cd -"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.8.6"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.0",
+    "sequelize-cli": "^5.4.0"
+  }
+}
