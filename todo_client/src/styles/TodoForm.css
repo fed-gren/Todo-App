@@ -1,0 +1,24 @@
+.FormContainer {
+  width: 95%;
+  border: 1px solid black;
+  padding: 2rem 1rem;
+  margin: auto;
+}
+
+.forms {
+  width: 90%;
+  margin: auto;
+}
+
+.todo_content {
+  resize: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  margin-left: 1rem;
+}
