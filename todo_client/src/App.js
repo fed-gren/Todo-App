@@ -3,7 +3,7 @@ import "./App.css";
 
 // components
 import Title from "./components/Title";
-import TodoControlBar from "./components/TodoControlBar";
+import TodoControl from "./components/TodoControl";
 import TodoContainer from "./components/TodoContainer";
 import TodoForm from "./components/TodoForm";
 
@@ -13,7 +13,7 @@ function App() {
     <header>
       <Title />
     </header>
-      <TodoControlBar/>
+      <TodoControl/>
       {/* <TodoContainer/> */}
       <TodoForm/>
     </div>
