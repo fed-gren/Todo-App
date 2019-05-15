@@ -10,7 +10,9 @@ import TodoForm from "./components/TodoForm";
 function App() {
   return (
     <div className="App">
+    <header>
       <Title />
+    </header>
       <TodoControlBar/>
       {/* <TodoContainer/> */}
       <TodoForm/>
