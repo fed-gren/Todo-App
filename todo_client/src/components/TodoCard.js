@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../styles/TodoCard.css";
 import { Collapse } from "react-bootstrap";
-import { MdExpandLess, MdExpandMore, MdEdit } from "react-icons/md";
+import { MdExpandLess, MdExpandMore } from "react-icons/md";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 function TodoCard() {
@@ -18,19 +19,25 @@ function TodoCard() {
       <section
         className="todo_card_summary"
         onMouseEnter={editHandler}
-        onMouseLeave={editHandler}>
+        onMouseLeave={editHandler}
+      >
         <section className="todo_card_left">
           <section className="todo_card_checker">
             <div className="checker" onClick={statusHandler}>
-              {todoDone && <div className="check_flag"/>}
+              {todoDone && <div className="check_flag" />}
             </div>
           </section>
           <section className="todo_card_title">title</section>
         </section>
         <section className="todo_card_deadline">deadline</section>
         <section className="todo_card_right">
-        <section className="todo_card_edit">
-            {showEdit && <Link to="/edit"><MdEdit className="icon_edit" /></Link>}
+          <section className="todo_card_edit">
+            {showEdit && (
+              <Link to="/edit">
+                <FiEdit className="icon_edit" />
+              </Link>
+            )}
+            {showEdit && <FiTrash2 />}
           </section>
           <section
             className="todo_card_collapse"

@@ -1,7 +1,7 @@
 .todo_control_container {
   padding: 0.5rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   width: 95%;
   margin: 0 auto;
   border-bottom: 1px solid rgb(173, 173, 173);
@@ -9,10 +9,10 @@
 
 .todo_control_left {
   flex-grow: 0;
-  width: 9rem;
+  width: 6.3rem;
   display: flex;
-  justify-content: space-around;
-  padding: 0 .7rem;
+  justify-content: space-between;
+  /* padding: 0 .7rem; */
   align-items: center;
 }
 
@@ -36,13 +36,13 @@
   align-items: center;
 }
 
-.section_button_delete {
+/* .section_button_delete {
   flex-grow: 0;
   text-align: center;
   width: 9rem;
   display: flex;
   justify-content: flex-end;
-}
+} */
 
 .alarm {
   font-size: 1.8rem;
