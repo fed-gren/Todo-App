@@ -8,7 +8,8 @@
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",
     "react-icons": "^3.7.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-tooltip": "^3.10.0"
   },
   "scripts": {
     "start": "react-scripts start",

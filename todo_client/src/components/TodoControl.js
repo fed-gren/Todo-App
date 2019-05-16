@@ -20,12 +20,6 @@ function TodoControl() {
           </Link>
         </section>
       </section>
-
-      {/* <section className="section_button_delete">
-        <Button className="button_delete" variant="outline-danger">
-          Delete
-        </Button>
-      </section> */}
     </section>
   );
 }

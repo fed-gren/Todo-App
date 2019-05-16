@@ -4,6 +4,7 @@ import { Collapse } from "react-bootstrap";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import ReactTooltip from "react-tooltip";
 
 function TodoCard() {
   const [todoDone, toggleStatus] = useState(false);
@@ -33,11 +34,27 @@ function TodoCard() {
         <section className="todo_card_right">
           <section className="todo_card_edit">
             {showEdit && (
-              <Link to="/edit">
+              <Link to="/edit" data-tip="React-tooltip" data-for="edit">
                 <FiEdit className="icon_edit" />
+                <ReactTooltip id="edit" place="top" type="dark" effect="solid">
+                  <span>Edit</span>
+                </ReactTooltip>
               </Link>
             )}
-            {showEdit && <FiTrash2 />}
+
+            {showEdit && (
+              <>
+                <FiTrash2 data-tip="React-tooltip" data-for="delete" />
+                <ReactTooltip
+                  id="delete"
+                  place="top"
+                  type="dark"
+                  effect="solid"
+                >
+                  <span>delete</span>
+                </ReactTooltip>
+              </>
+            )}
           </section>
           <section
             className="todo_card_collapse"
