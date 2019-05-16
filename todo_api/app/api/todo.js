@@ -1,8 +1,9 @@
 module.exports = (app, todo) => {
   //모든 todo 조회
-  app.get("/todos", (req, res) =>
-    todo.findAll().then(result => res.json(result))
-  );
+  app.get("/todos", (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    return todo.findAll().then(result => res.json(result));
+  });
 
   //특정 todo 조회
   app.get("/todo/:id", (req, res) => {

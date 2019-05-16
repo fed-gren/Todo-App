@@ -2,7 +2,7 @@
   padding: 0.5rem 0;
   display: flex;
   justify-content: flex-end;
-  width: 95%;
+  width: 90%;
   margin: 0 auto;
   border-bottom: 1px solid rgb(173, 173, 173);
 }
@@ -36,14 +36,6 @@
   align-items: center;
 }
 
-/* .section_button_delete {
-  flex-grow: 0;
-  text-align: center;
-  width: 9rem;
-  display: flex;
-  justify-content: flex-end;
-} */
-
 .alarm {
   font-size: 1.8rem;
   cursor: pointer;
@@ -53,13 +45,10 @@
   color: gray;
 }
 
-.button_newTodo,
-.button_delete {
-  box-shadow: 0 0.1rem;
+.button_newTodo {
   box-shadow: 0 0.1rem;
 }
 
-.button_newTodo:active,
-.button_delete:active {
+.button_newTodo:active{
   transform:translateY(0.1rem);
 }

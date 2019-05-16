@@ -17,20 +17,20 @@
 
 .todo_card_deadline {
   flex-grow: 1;
-  padding: 0 .6rem;
+  padding: 0 0.6rem;
 }
 
 .todo_card_right {
   display: flex;
   flex-direction: row;
   flex-grow: 0;
-  padding-right: .5rem;
+  padding-right: 0.5rem;
 }
 
 .todo_card_checker {
   display: flex;
   align-items: center;
-  padding: 0 .6rem;
+  padding: 0 0.6rem;
 }
 
 .checker {
@@ -64,7 +64,7 @@
   display: flex;
   align-items: center;
   width: 20rem;
-  padding: 0 .6rem;
+  padding: 0 0.6rem;
 }
 
 .todo_card_collapse > * {
@@ -73,9 +73,25 @@
 }
 
 .todo_card_content {
-  padding: 0 .8rem;
+  padding: 0 0.8rem;
 }
 
-.icon_edit {
-  color: black;
+.todo_card_edit {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.8rem;
+}
+
+.button_editTodo,
+.button_deleteTodo {
+  box-shadow: 0 0.1rem;
+}
+
+.button_deleteTodo {
+  margin-left: .6rem;
+}
+
+.button_editTodo:active,
+.button_deleteTodo:active {
+  transform: translateY(0.1rem);
 }

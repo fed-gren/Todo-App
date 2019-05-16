@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "../styles/TodoCard.css";
-import { Collapse } from "react-bootstrap";
+import { Collapse, Button } from "react-bootstrap";
 import { MdExpandLess, MdExpandMore } from "react-icons/md";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import ReactTooltip from "react-tooltip";
 
-function TodoCard() {
+function TodoCard(props) {
   const [todoDone, toggleStatus] = useState(false);
   const [cardOpened, toggleCard] = useState(false);
   let [showEdit, setEdit] = useState(false);
@@ -14,6 +12,8 @@ function TodoCard() {
   const statusHandler = () => toggleStatus(!todoDone);
   const cardHandler = () => toggleCard(!cardOpened);
   const editHandler = () => setEdit(!showEdit);
+
+  const {title, content, priority, deadline} = props;
 
   return (
     <section className="todo_card">
@@ -28,34 +28,10 @@ function TodoCard() {
               {todoDone && <div className="check_flag" />}
             </div>
           </section>
-          <section className="todo_card_title">title</section>
+          <section className="todo_card_title">{title}</section>
         </section>
-        <section className="todo_card_deadline">deadline</section>
+        <section className="todo_card_deadline">{deadline}</section>
         <section className="todo_card_right">
-          <section className="todo_card_edit">
-            {showEdit && (
-              <Link to="/edit" data-tip="React-tooltip" data-for="edit">
-                <FiEdit className="icon_edit" />
-                <ReactTooltip id="edit" place="top" type="dark" effect="solid">
-                  <span>Edit</span>
-                </ReactTooltip>
-              </Link>
-            )}
-
-            {showEdit && (
-              <>
-                <FiTrash2 data-tip="React-tooltip" data-for="delete" />
-                <ReactTooltip
-                  id="delete"
-                  place="top"
-                  type="dark"
-                  effect="solid"
-                >
-                  <span>delete</span>
-                </ReactTooltip>
-              </>
-            )}
-          </section>
           <section
             className="todo_card_collapse"
             onClick={cardHandler}
@@ -70,9 +46,18 @@ function TodoCard() {
         <Collapse in={cardOpened}>
           <div id="example-collapse-text">
             {/* id는 나중에 todo id랑 조합해서 생성 */}
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
+            {content}
+            <section className="todo_card_edit">
+              <Link to="/edit">
+                <Button className="button_editTodo" variant="outline-dark">
+                  edit
+                </Button>
+              </Link>
+
+              <Button className="button_deleteTodo" variant="outline-dark">
+                delete
+              </Button>
+            </section>
           </div>
         </Collapse>
       </section>
