@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/TodoCard.css";
 import { Collapse } from "react-bootstrap";
 import { MdExpandLess, MdExpandMore, MdEdit } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 function TodoCard() {
   const [todoDone, toggleStatus] = useState(false);
@@ -36,14 +37,16 @@ function TodoCard() {
             {cardOpened ? <MdExpandLess /> : <MdExpandMore />}
           </section>
           <section className="todo_card_edit">
-            <MdEdit />
+            <Link to="/edit">
+              <MdEdit />
+            </Link>
           </section>
         </section>
       </section>
       <section className="todo_card_content">
         <Collapse in={cardOpened}>
           <div id="example-collapse-text">
-          {/* id는 나중에 todo id랑 조합해서 생성 */}
+            {/* id는 나중에 todo id랑 조합해서 생성 */}
             Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
             terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
             labore wes anderson cred nesciunt sapiente ea proident.

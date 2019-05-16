@@ -1,7 +1,8 @@
 import React from "react";
 import "../styles/TodoControl.css";
 import { FaBell } from "react-icons/fa";
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function TodoControl() {
   return (
@@ -12,14 +13,12 @@ function TodoControl() {
         </section>
 
         <section className="section_button_newTodo">
-          <Button className="button_newTodo" variant="outline-dark">
-            New
-          </Button>
+          <Link to="/new">
+            <Button className="button_newTodo" variant="outline-dark">
+              New
+            </Button>
+          </Link>
         </section>
-      </section>
-
-      <section className="section_guide_message">
-        <span className="guide_message">새로운 할 일을 등록하세요!</span>
       </section>
 
       <section className="section_button_delete">

@@ -2,6 +2,7 @@
 import React from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import "../styles/TodoForm.css";
+import { Link } from "react-router-dom";
 
 function TodoForm() {
   return (
@@ -38,9 +39,11 @@ function TodoForm() {
           </Form.Group>
         </Form.Row>
         <section className="buttons">
-          <Button variant="danger" type="button">
-            Cancel
-          </Button>
+          <Link to="/">
+            <Button variant="danger" type="button">
+              Cancel
+            </Button>
+          </Link>
           <Button variant="success" type="submit" className="submit_todo">
             Submit
           </Button>
