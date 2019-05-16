@@ -7,27 +7,31 @@ import { Link } from "react-router-dom";
 function TodoCard() {
   const [todoDone, toggleStatus] = useState(false);
   const [cardOpened, toggleCard] = useState(false);
+  let [showEdit, setEdit] = useState(false);
 
   const statusHandler = () => toggleStatus(!todoDone);
   const cardHandler = () => toggleCard(!cardOpened);
+  const editHandler = () => setEdit(!showEdit);
 
   return (
     <section className="todo_card">
-      <section className="todo_card_summary">
+      <section
+        className="todo_card_summary"
+        onMouseEnter={editHandler}
+        onMouseLeave={editHandler}>
         <section className="todo_card_left">
           <section className="todo_card_checker">
             <div className="checker" onClick={statusHandler}>
-              {todoDone ? (
-                <div className="check_flag done" />
-              ) : (
-                <div className="check_flag todo" />
-              )}
+              {todoDone && <div className="check_flag"/>}
             </div>
           </section>
           <section className="todo_card_title">title</section>
         </section>
         <section className="todo_card_deadline">deadline</section>
         <section className="todo_card_right">
+        <section className="todo_card_edit">
+            {showEdit && <Link to="/edit"><MdEdit className="icon_edit" /></Link>}
+          </section>
           <section
             className="todo_card_collapse"
             onClick={cardHandler}
@@ -35,11 +39,6 @@ function TodoCard() {
             aria-expanded={cardOpened}
           >
             {cardOpened ? <MdExpandLess /> : <MdExpandMore />}
-          </section>
-          <section className="todo_card_edit">
-            <Link to="/edit">
-              <MdEdit />
-            </Link>
           </section>
         </section>
       </section>
