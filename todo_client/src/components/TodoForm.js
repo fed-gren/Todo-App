@@ -1,13 +1,14 @@
 //? 새로운 TODO를 생성하거나, 기존 TODO를 수정할 때 사용할 컴포넌트
-import React from "react";
+import React, {useState} from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import "../styles/TodoForm.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { STV_priority } from "../utils/StringToValue";
 import axios from "axios";
 
 function TodoForm(props) {
   console.log(`work : ${props.work}`);
+  const [redirect, setRedirect] = useState(false);
 
   function registNewTodo(event) {
     event.preventDefault();
@@ -18,13 +19,12 @@ function TodoForm(props) {
     newTodo.content = form.elements.content.value;
     newTodo.priority = STV_priority[form.elements.priority.value];
 
-    axios.post(apiUrl, newTodo)
-    .then(function (response) {
-      window.location = "/";
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post(apiUrl, newTodo)
+      .catch(function(error) {
+        console.log(error);
+      });
+      setRedirect(true);
   }
 
   function editTodo(event) {
@@ -33,10 +33,18 @@ function TodoForm(props) {
 
   return (
     <section className="FormContainer">
-      <Form className="forms" onSubmit={(props.work === "new") ? registNewTodo : editTodo}>
+      {redirect && <Redirect push to="/" />}
+      <Form
+        className="forms"
+        onSubmit={props.work === "new" ? registNewTodo : editTodo}
+      >
         <Form.Group controlId="title">
           <Form.Label>Title</Form.Label>
-          <Form.Control type="text" placeholder="할 일 제목을 적어주세요." />
+          <Form.Control
+            type="text"
+            placeholder="할 일 제목을 적어주세요.(최대 14글자)"
+            maxLength={14}
+          />
         </Form.Group>
         <Form.Group controlId="content">
           <Form.Label>Content</Form.Label>
@@ -70,9 +78,13 @@ function TodoForm(props) {
               Cancel
             </Button>
           </Link>
-          <Button variant="success" type="submit" className="submit_todo">
-            Submit
-          </Button>
+            <Button
+              variant="success"
+              type="submit"
+              className="submit_todo"
+            >
+              Submit
+            </Button>
         </section>
       </Form>
     </section>

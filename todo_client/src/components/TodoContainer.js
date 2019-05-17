@@ -8,6 +8,15 @@ import TodoCard from "./TodoCard";
 function TodoContainer() {
   const [todos, setTodos] = useState(null);
 
+  useEffect(() => {
+    async function fetchData() {
+      await axios("http://localhost:8080/todos")
+      .then(res => res.data)
+      .then(res => setTodos(res));
+    }
+    fetchData();
+  }, [(todos && true)]);
+
   function renderTodos() {
     const todoCards = todos.map((todoCard) => {
       const {id, title, content, deadline, priority} = todoCard;
@@ -18,20 +27,11 @@ function TodoContainer() {
         content={content}
         deadline={deadline}
         priority={priority}
+        todoUpdate = {forceUpdate}
       />
     });
     return todoCards;
   }
-
-  useEffect(() => {
-    let result;
-    async function fetchData() {
-      result = await axios("http://localhost:8080/todos");
-      setTodos(result.data);
-    }
-    fetchData();
-    return;
-  }, []);
 
   return (
     <section className="todo_card_container">
