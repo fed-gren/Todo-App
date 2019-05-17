@@ -13,6 +13,7 @@ module.exports = (app, todo) => {
 
   //todo 생성
   app.post("/todo", (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     const { title, content, deadline, priority } = req.body;
     return todo.create({ title, content, deadline, priority }).then(result => res.json(result));
   });
