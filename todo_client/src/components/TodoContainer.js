@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../styles/TodoContainer.css";
+import axios from "axios";
 
 //components
 import TodoCard from "./TodoCard";
 
 function TodoContainer() {
   const [todos, setTodos] = useState(null);
-
-  function callApi() {
-
-    return fetch("http://localhost:8080/todos")
-    .then(response => response.json())
-    .then(json => json)
-    // .catch(err = console.log(err));
-  }
-
-  async function getTodos() {
-    const apiTodos = await callApi();
-    // console.log(`apiTodos : ${apiTodos}`);
-    setTodos(apiTodos);
-  }
 
   function renderTodos() {
     const todoCards = todos.map((todoCard) => {
@@ -37,15 +24,18 @@ function TodoContainer() {
   }
 
   useEffect(() => {
-    getTodos();
-  });
+    let result;
+    async function fetchData() {
+      result = await axios("http://localhost:8080/todos");
+      setTodos(result.data);
+    }
+    fetchData();
+    return;
+  }, []);
 
   return (
     <section className="todo_card_container">
-      {todos ? renderTodos() : <span>no</span>}
-      {/* <TodoCard />
-      <TodoCard />
-      <TodoCard /> */}
+      {todos && renderTodos()}
     </section>
   );
 }

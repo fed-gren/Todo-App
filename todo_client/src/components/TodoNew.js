@@ -4,7 +4,9 @@ import TodoForm from "./TodoForm";
 function TodoNew() {
   return (
     <>
-      <TodoForm />
+      <TodoForm
+        work={"new"}
+      />
     </>
   );
 }
