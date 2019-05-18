@@ -11,11 +11,27 @@ function TodoCard(props) {
   const [todoDone, toggleStatus] = useState(false);
   const [cardOpened, toggleCard] = useState(false);
   const [visible, setVisible] = useState(true);
+  let parsedDate = "기한 : ";
 
   const statusHandler = () => toggleStatus(!todoDone);
   const cardHandler = () => toggleCard(!cardOpened);
 
   const { title, content, priority, deadline } = props;
+
+  function parseDate() {
+    if(deadline === null) {
+      parsedDate += "없음";
+      return;
+    }
+    let date = new Date(deadline);
+    const dateInfoObj = {};
+    dateInfoObj.year = date.getFullYear();
+    dateInfoObj.month = date.getMonth() + 1;
+    dateInfoObj.day = date.getDate();
+    dateInfoObj.hour = date.getHours();
+    dateInfoObj.min = date.getMinutes();
+    parsedDate += `${dateInfoObj.year}년 ${dateInfoObj.month}월 ${dateInfoObj.day}일 ${dateInfoObj.hour}시 ${dateInfoObj.min}분`;
+  }
 
   function deleteTodoCard() {
     const apiUrl = `http://localhost:8080/todo/${todoId}`;
@@ -27,6 +43,7 @@ function TodoCard(props) {
 
   return (
     <>
+    {parseDate()}
       {visible && (
         <section className="todo_card">
           <section
@@ -40,7 +57,7 @@ function TodoCard(props) {
               </section>
               <section className="todo_card_title">{title}</section>
             </section>
-            <section className="todo_card_deadline">{deadline}</section>
+            <section className="todo_card_deadline">{parsedDate}</section>
             <section className="todo_card_right">
               <section
                 className="todo_card_collapse"

@@ -5,6 +5,7 @@ import "../styles/TodoForm.css";
 import { Link, Redirect } from "react-router-dom";
 import { STV_priority } from "../utils/StringToValue";
 import axios from "axios";
+import DateTimePicker from "./DateTimePicker";
 
 function TodoForm(props) {
   const [redirect, setRedirect] = useState(false);
@@ -12,15 +13,18 @@ function TodoForm(props) {
   const title_input = useRef(null);
   const content_textarea = useRef(null);
   const priority_select = useRef(null);
+  const deadline_date = useRef(null);
 
   function registNewTodo(event) {
     event.preventDefault();
     const apiUrl = "http://localhost:8080/todo";
     let form = event.target;
+    const {title, content, priority, deadline} = form.elements;
     const newTodo = {};
-    newTodo.title = form.elements.title.value;
-    newTodo.content = form.elements.content.value;
-    newTodo.priority = STV_priority[form.elements.priority.value];
+    newTodo.title = title.value;
+    newTodo.content = content.value;
+    newTodo.priority = STV_priority[priority.value];
+    newTodo.deadline = (deadline.value === "") ? undefined : deadline.value;
 
     axios.post(apiUrl, newTodo).catch(function(error) {
       console.log(error);
@@ -44,8 +48,7 @@ function TodoForm(props) {
       await axios
         .get(`http://localhost:8080/todo/${props.editTodoId}`)
         .then(res => res.data)
-        .then(res => setTodo(res))
-        .then(console.log(todo));
+        .then(res => setTodo(res));
     }
     fetchData();
   }
@@ -54,10 +57,12 @@ function TodoForm(props) {
     event.preventDefault();
     const apiUrl = `http://localhost:8080/todo/${props.editTodoId}`;
     let form = event.target;
+    const {title, content, priority, deadline} = form.elements;
     const updateTodo = {};
-    updateTodo.title = form.elements.title.value;
-    updateTodo.content = form.elements.content.value;
-    updateTodo.priority = STV_priority[form.elements.priority.value];
+    updateTodo.title = title.value;
+    updateTodo.content = content.value;
+    updateTodo.priority = STV_priority[priority.value];
+    updateTodo.deadline = (deadline.value === "") ? undefined : deadline.value;
 
     axios.put(apiUrl, updateTodo).catch(function(error) {
       console.log(error);
@@ -109,8 +114,7 @@ function TodoForm(props) {
           </Form.Group>
 
           <Form.Group as={Col}>
-            <Form.Label>Deadline</Form.Label>
-            <Form.Control />
+            <DateTimePicker/>
           </Form.Group>
         </Form.Row>
         <section className="buttons">
