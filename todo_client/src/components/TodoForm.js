@@ -7,7 +7,6 @@ import { STV_priority } from "../utils/StringToValue";
 import axios from "axios";
 
 function TodoForm(props) {
-  console.log(`work : ${props.work}`);
   const [redirect, setRedirect] = useState(false);
 
   function registNewTodo(event) {
