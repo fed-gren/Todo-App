@@ -36,12 +36,24 @@
 .checker {
   width: 2rem;
   height: 2rem;
-  border: 1px solid gray;
+  border: 2px solid gray;
   border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.checker.red {
+  border-color: red;
+}
+
+.checker.orange {
+  border-color: orange;
+}
+
+.checker.green {
+  border-color: green;
 }
 
 .check_flag {
@@ -54,6 +66,21 @@
 
 .check_flag.done {
   visibility: visible;
+}
+
+.check_flag.red {
+  border-color: red;
+  background-color: red;
+}
+
+.check_flag.orange {
+  border-color: orange;
+  background-color: orange;
+}
+
+.check_flag.green {
+  border-color: green;
+  background-color: green;
 }
 
 .check_flag.todo {

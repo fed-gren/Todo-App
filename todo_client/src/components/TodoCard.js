@@ -17,9 +17,31 @@ function TodoCard(props) {
   const cardHandler = () => toggleCard(!cardOpened);
 
   const { title, content, priority, deadline } = props;
+  let priorityColor = "gray";
+  let checkerClassName = "checker";
+  let checkFlagClassName = "check_flag";
+
+  function setCheckerColor() {
+    switch (priority) {
+      case "1":
+        priorityColor = " red";
+        break;
+      case "2":
+        priorityColor = " orange";
+        break;
+      case "3":
+        priorityColor = " green";
+        break;
+      default:
+        priorityColor = " gray";
+        break;
+    }
+    checkerClassName += priorityColor;
+    checkFlagClassName += priorityColor;
+  }
 
   function parseDate() {
-    if(deadline === null) {
+    if (deadline === null) {
       parsedDate += "없음";
       return;
     }
@@ -30,7 +52,9 @@ function TodoCard(props) {
     dateInfoObj.day = date.getDate();
     dateInfoObj.hour = date.getHours();
     dateInfoObj.min = date.getMinutes();
-    parsedDate += `${dateInfoObj.year}년 ${dateInfoObj.month}월 ${dateInfoObj.day}일 ${dateInfoObj.hour}시 ${dateInfoObj.min}분`;
+    parsedDate += `${dateInfoObj.year}년 ${dateInfoObj.month}월 ${
+      dateInfoObj.day
+    }일 ${dateInfoObj.hour}시 ${dateInfoObj.min}분`;
   }
 
   function deleteTodoCard() {
@@ -43,16 +67,15 @@ function TodoCard(props) {
 
   return (
     <>
-    {parseDate()}
+      {parseDate()}
+      {setCheckerColor()}
       {visible && (
         <section className="todo_card">
-          <section
-            className="todo_card_summary"
-          >
+          <section className="todo_card_summary">
             <section className="todo_card_left">
               <section className="todo_card_checker">
-                <div className="checker" onClick={statusHandler}>
-                  {todoDone && <div className="check_flag" />}
+                <div className={checkerClassName} onClick={statusHandler}>
+                  {todoDone && <div className={checkFlagClassName} />}
                 </div>
               </section>
               <section className="todo_card_title">{title}</section>
