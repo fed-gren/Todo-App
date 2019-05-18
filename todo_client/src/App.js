@@ -15,7 +15,7 @@ function App() {
       <Header />
         <Route path="/" exact component={TodoIndex} />
         <Route path="/new/" exact component={TodoNew} />
-        <Route path="/edit/" exact component={TodoEdit} />
+        <Route path="/edit/:todoId" exact component={TodoEdit} />
       </BrowserRouter>
     </div>
   );

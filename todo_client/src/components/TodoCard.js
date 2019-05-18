@@ -7,6 +7,7 @@ import axios from "axios";
 
 function TodoCard(props) {
   const todoId = props.id;
+  const editUrl = `edit/${todoId}`;
   const [todoDone, toggleStatus] = useState(false);
   const [cardOpened, toggleCard] = useState(false);
   const [visible, setVisible] = useState(true);
@@ -57,7 +58,7 @@ function TodoCard(props) {
                 {/* id는 나중에 todo id랑 조합해서 생성 */}
                 {content}
                 <section className="todo_card_edit">
-                  <Link to="/edit">
+                  <Link to={editUrl}>
                     <Button className="button_editTodo" variant="outline-dark">
                       edit
                     </Button>

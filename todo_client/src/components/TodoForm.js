@@ -1,5 +1,5 @@
 //? 새로운 TODO를 생성하거나, 기존 TODO를 수정할 때 사용할 컴포넌트
-import React, {useState} from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Form, Col, Button } from "react-bootstrap";
 import "../styles/TodoForm.css";
 import { Link, Redirect } from "react-router-dom";
@@ -8,6 +8,10 @@ import axios from "axios";
 
 function TodoForm(props) {
   const [redirect, setRedirect] = useState(false);
+  const [todo, setTodo] = useState(null);
+  const title_input = useRef(null);
+  const content_textarea = useRef(null);
+  const priority_select = useRef(null);
 
   function registNewTodo(event) {
     event.preventDefault();
@@ -18,17 +22,53 @@ function TodoForm(props) {
     newTodo.content = form.elements.content.value;
     newTodo.priority = STV_priority[form.elements.priority.value];
 
-    axios
-      .post(apiUrl, newTodo)
-      .catch(function(error) {
-        console.log(error);
-      });
-      setRedirect(true);
+    axios.post(apiUrl, newTodo).catch(function(error) {
+      console.log(error);
+    });
+    setRedirect(true);
+  }
+
+  function setFormValues() {
+    title_input.current.value = todo.title;
+    content_textarea.current.value = todo.content;
+    for (let [key, value] of Object.entries(STV_priority)) {
+      if (value === todo.priority) {
+        priority_select.current.value = key;
+        break;
+      }
+    }
+  }
+
+  function getEditTodoValues() {
+    async function fetchData() {
+      await axios
+        .get(`http://localhost:8080/todo/${props.editTodoId}`)
+        .then(res => res.data)
+        .then(res => setTodo(res))
+        .then(console.log(todo));
+    }
+    fetchData();
   }
 
   function editTodo(event) {
-    console.log("not yet");
+    event.preventDefault();
+    const apiUrl = `http://localhost:8080/todo/${props.editTodoId}`;
+    let form = event.target;
+    const updateTodo = {};
+    updateTodo.title = form.elements.title.value;
+    updateTodo.content = form.elements.content.value;
+    updateTodo.priority = STV_priority[form.elements.priority.value];
+
+    axios.put(apiUrl, updateTodo).catch(function(error) {
+      console.log(error);
+    });
+    setRedirect(true);
   }
+
+  useEffect(() => {
+    props.editTodoId && getEditTodoValues();
+    todo && setFormValues();
+  }, [todo && true]);
 
   return (
     <section className="FormContainer">
@@ -43,6 +83,7 @@ function TodoForm(props) {
             type="text"
             placeholder="할 일 제목을 적어주세요.(최대 14글자)"
             maxLength={14}
+            ref={title_input}
           />
         </Form.Group>
         <Form.Group controlId="content">
@@ -52,13 +93,14 @@ function TodoForm(props) {
             rows="4"
             className="todo_content"
             placeholder="할 일 내용을 적어주세요."
+            ref={content_textarea}
           />
         </Form.Group>
 
         <Form.Row>
           <Form.Group as={Col} controlId="priority">
             <Form.Label>우선순위</Form.Label>
-            <Form.Control as="select">
+            <Form.Control as="select" ref={priority_select}>
               <option>없음</option>
               <option>높음</option>
               <option>중간</option>
@@ -77,13 +119,9 @@ function TodoForm(props) {
               Cancel
             </Button>
           </Link>
-            <Button
-              variant="success"
-              type="submit"
-              className="submit_todo"
-            >
-              Submit
-            </Button>
+          <Button variant="success" type="submit" className="submit_todo">
+            Submit
+          </Button>
         </section>
       </Form>
     </section>

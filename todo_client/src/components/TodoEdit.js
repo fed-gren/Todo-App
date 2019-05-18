@@ -1,12 +1,15 @@
 import React from "react";
 import TodoForm from "./TodoForm";
 
-function TodoNew() {
+function TodoEdit(props) {
+  const editTodoId = props.match.params.todoId;
   return (
     <>
-      <TodoForm />
+      <TodoForm
+        editTodoId={editTodoId}
+      />
     </>
   );
 }
 
-export default TodoNew;
+export default TodoEdit;
