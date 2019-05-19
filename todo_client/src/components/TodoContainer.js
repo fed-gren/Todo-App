@@ -9,12 +9,9 @@ function TodoContainer() {
   const [todos, setTodos] = useState(null);
 
   const getAllTodos = function() {
-    async function fetchData() {
-      await axios("http://localhost:8080/todos")
+    axios("http://localhost:8080/todos")
       .then(res => res.data)
       .then(res => setTodos(res));
-    }
-    fetchData();
   }
 
   useEffect(getAllTodos, [(todos && true)]);

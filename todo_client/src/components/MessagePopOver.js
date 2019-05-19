@@ -6,32 +6,18 @@ import axios from "axios";
 
 function MessagePopOver() {
   const [todos, setTodos] = useState(null);
+  // const [numOfMessage, setNumOfMessage] = useState(0);
   const getAllTodos = function() {
-    async function fetchData() {
-      await axios("http://localhost:8080/todos")
+    axios("http://localhost:8080/todos")
       .then(res => res.data)
       .then(res => setTodos(res));
-    }
-    fetchData();
   }
 
   useEffect(getAllTodos, [(todos && true)]);
   console.log(todos);
   console.log(typeof todos);
-  // const titles = todos.map((todo) => {
-  //   const {title} = todo;
-  //   return title;
-  // });
-  // console.log(titles);
 
-
-
-  const outOfDateTitles = [
-    "잠자기",
-    "공부하기",
-    "휴식하기",
-  ];
-  const numOfMessage = outOfDateTitles.length;
+  let numOfMessage;
 
   function renderTitles() {
     if(todos === null) return;
@@ -41,7 +27,7 @@ function MessagePopOver() {
         {todoTitle}
       </div>)
     });
-
+    numOfMessage = titles.length;
     return titles;
   }
 
