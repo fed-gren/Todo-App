@@ -1,0 +1,25 @@
+.message_popover {
+  position: relative;
+}
+
+.count_messages {
+  color: white;
+  position: absolute;
+  top: -0.3rem;
+  right: -0.3rem;
+  border: 1px solid red;
+  background-color: red;
+  font-weight: bold;
+  width: 1rem;
+  height: 1rem;
+  font-size: .7rem;
+  border-radius: .5rem;
+  text-align: center;
+}
+
+.out_of_date {
+  display: flex;
+  align-items: center;
+  padding: .4rem .2rem;
+  border-bottom: 1px solid gray;
+}
