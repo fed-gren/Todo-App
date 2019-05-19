@@ -113,7 +113,7 @@ function TodoForm(props) {
             </Form.Control>
           </Form.Group>
 
-          <Form.Group as={Col}>
+          <Form.Group as={Col} className="date-time-picker">
             <DateTimePicker/>
           </Form.Group>
         </Form.Row>

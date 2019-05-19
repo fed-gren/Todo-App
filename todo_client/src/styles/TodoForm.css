@@ -14,6 +14,12 @@
   resize: none;
 }
 
+.date-time-picker {
+  display:flex;
+  align-items: flex-end;
+  /* flex-direction: column; */
+}
+
 .buttons {
   display: flex;
   justify-content: flex-end;

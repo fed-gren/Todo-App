@@ -1,9 +1,10 @@
 import React from "react";
+import "../styles/DateTimePicker.css";
 
-function DateTimePicker(props) {
+function DateTimePicker() {
   return (
-    <section>
-      <label htmlFor="deadline">Deadline</label>
+    <section className="datetime">
+      <label htmlFor="deadline">기한 (Optional)</label>
       <input
         type="datetime-local"
         id="deadline"

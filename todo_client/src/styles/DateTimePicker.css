@@ -1,0 +1,31 @@
+.datetime {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.datetime:focus {
+  border-color: rgb(128, 189, 255);
+  box-shadow: rgba(0, 123, 255, 0.25) 0 0 0 .2rem;
+}
+
+#deadline {
+  width: 100%;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  /* background-color: #fff; */
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#deadline:focus {
+  border-color: rgb(128, 189, 255);
+  box-shadow: rgba(0, 123, 255, 0.25) 0 0 0 .2rem;
+  outline: 0;
+}
