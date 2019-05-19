@@ -21,7 +21,7 @@ function TodoContainer() {
 
   function renderTodos() {
     const todoCards = todos.map((todoCard) => {
-      const {id, title, content, deadline, priority} = todoCard;
+      const {id, title, content, deadline, priority, status} = todoCard;
       return <TodoCard
         key={id}
         id={id}
@@ -30,6 +30,7 @@ function TodoContainer() {
         deadline={deadline}
         priority={priority}
         getAllTodos={getAllTodos}
+        todoStatus={status}
       />
     });
     return todoCards;
