@@ -83,7 +83,7 @@ function TodoForm(props) {
         onSubmit={props.work === "new" ? registNewTodo : editTodo}
       >
         <Form.Group controlId="title">
-          <Form.Label>Title</Form.Label>
+          <Form.Label>제목</Form.Label>
           <Form.Control
             type="text"
             placeholder="할 일 제목을 적어주세요.(최대 14글자)"
@@ -92,7 +92,7 @@ function TodoForm(props) {
           />
         </Form.Group>
         <Form.Group controlId="content">
-          <Form.Label>Content</Form.Label>
+          <Form.Label>내용</Form.Label>
           <Form.Control
             as="textarea"
             rows="4"
