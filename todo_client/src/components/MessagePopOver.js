@@ -5,9 +5,9 @@ import "../styles/MessagePopOver.css";
 import axios from "axios";
 
 function MessagePopOver() {
-  // const [todos, setTodos] = useState(null);
   const [numOfMessage, setNumOfMessage] = useState(0);
   const [renderedTitles, setRenderedTitle] = useState(null);
+  const Min = 60 * 1000;
 
   const getAllTodos = function() {
     axios("http://localhost:8080/todos")
@@ -17,11 +17,21 @@ function MessagePopOver() {
       });
   };
 
+  function checkExcedeed({title, deadline, status}) {
+    if(!deadline) return false;
+    if(status === "DONE") return false;
+    let nowTime = new Date().getTime();
+    let deadlineTime = new Date(deadline).getTime();
+    if(nowTime > deadlineTime) return title;
+    else return false;
+  }
 
   function renderTitles(todos) {
     if (todos === null) return;
-    // console.log(todos);
-    const titles = todos.map((todo, index) => {
+    const titles = todos.filter(todo => {
+      return checkExcedeed(todo);
+    })
+    .map((todo, index) => {
       const { title: todoTitle } = todo;
       return (
         <div className="out_of_date" key={index}>
@@ -37,7 +47,7 @@ function MessagePopOver() {
     getAllTodos();
     setInterval(() => {
       getAllTodos();
-    }, 5000);
+    }, Min);
   }, []);
 
   const popover = (
