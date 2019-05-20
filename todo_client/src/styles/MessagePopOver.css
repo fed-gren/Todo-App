@@ -5,15 +5,15 @@
 .count_messages {
   color: white;
   position: absolute;
-  top: -0.3rem;
-  right: -0.3rem;
+  top: -0.5rem;
+  right: -0.5rem;
   border: 1px solid red;
   background-color: red;
   font-weight: bold;
-  width: 1rem;
-  height: 1rem;
-  font-size: .7rem;
-  border-radius: .5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: .8rem;
+  border-radius: .6rem;
   text-align: center;
 }
 
