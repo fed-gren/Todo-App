@@ -66,7 +66,9 @@ function MessagePopOver() {
       >
         <FaBell className="alarm" />
       </OverlayTrigger>
-      <div className="count_messages">{numOfMessage}</div>
+      <div className="count_messages">
+        <p>{numOfMessage}</p>
+        </div>
     </section>
   );
 }
