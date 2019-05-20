@@ -5,6 +5,7 @@
   width: 90%;
   margin: 0 auto;
   border-bottom: 1px solid rgb(173, 173, 173);
+  max-width: 80rem;
 }
 
 .todo_control_left {

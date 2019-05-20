@@ -3,4 +3,5 @@
   margin: 0 auto;
   overflow: auto;
   flex:1;
+  max-width: 80rem;
 }
