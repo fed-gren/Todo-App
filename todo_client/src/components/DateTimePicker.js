@@ -9,7 +9,6 @@ function DateTimePicker() {
         type="datetime-local"
         id="deadline"
         name="deadline"
-        // min="2018-06-07T00:00"
       />
     </section>
   );
