@@ -29,7 +29,6 @@ function TodoCard(props) {
   function setCheckerColor() {
     checkerClassName = "checker";
     checkFlagClassName = "check_flag";
-    console.log(`priority : ${priority}`);
     switch (priority) {
       case "1":
         priorityColor = " red";
@@ -91,7 +90,6 @@ function TodoCard(props) {
       contentText.current.innerHTML = `<del>${content}</del>`;
       checkFlag.current.innerHTML = `<div class="${checkFlagClassName}" />`;
     }
-    console.log(`checkFlagClassName: ${checkFlagClassName}`);
   }
 
   function toggleTodoStatus() {
@@ -108,7 +106,7 @@ function TodoCard(props) {
 
   useEffect(() => {
     setCardStatus();
-  }, [setCardStatus]);
+  }, []);
 
   return (
     <>
