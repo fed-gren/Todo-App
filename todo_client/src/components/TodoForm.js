@@ -85,6 +85,7 @@ function TodoForm(props) {
         <Form.Group controlId="title">
           <Form.Label>제목</Form.Label>
           <Form.Control
+            required
             type="text"
             placeholder="할 일 제목을 적어주세요.(최대 14글자)"
             maxLength={14}
@@ -92,7 +93,7 @@ function TodoForm(props) {
           />
         </Form.Group>
         <Form.Group controlId="content">
-          <Form.Label>내용</Form.Label>
+          <Form.Label>내용 (Optional)</Form.Label>
           <Form.Control
             as="textarea"
             rows="4"
